@@ -47,7 +47,7 @@ server.applyMiddleware({ app });
 
 app.listen({ port: process.env.PORT }, () => {
   console.log(
-    `Server started at http://localhost:${process.env.PORT}${server.graphqlPath}`,
+    `Server started at http://localhost:${process.env.PORT}${server.graphqlPath}`
   );
   connectDB();
 });

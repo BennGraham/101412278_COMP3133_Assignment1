@@ -5,7 +5,7 @@ const schema = gql`
     id: ID!
     username: String!
     password: String!
-    email: String!
+    email: String
     createdAt: String!
     updatedAt: String!
   }

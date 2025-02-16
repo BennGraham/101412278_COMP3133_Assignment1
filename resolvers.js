@@ -1,3 +1,5 @@
+const { validationResult, check } = require("express-validator");
+const { UserInputError } = require("apollo-server-express");
 const User = require("./models/User");
 const Employee = require("./models/Employee");
 
@@ -5,9 +7,15 @@ const resolver = {
   Query: {
     login: async (_, { username, password }) => {
       const user = await User.findOne({ username });
-      if (!user || user.password !== password) {
+      if (!user) {
         return null;
       }
+
+      const isValidPassword = await user.comparePassword(password);
+      if (!isValidPassword) {
+        return null;
+      }
+
       return user;
     },
 
@@ -30,7 +38,19 @@ const resolver = {
 
   Mutation: {
     signup: async (_, { username, email, password }) => {
-      // TODO: might need to check if the user is already in db
+      await Promise.all([
+        check("username", "Username is required").notEmpty().run({ req: {} }),
+        check("password", "Password is required").notEmpty().run({ req: {} }),
+      ]);
+
+      const errors = validationResult({ req: {} });
+      if (!errors.isEmpty()) {
+        const errorMessages = errors.array().map((error) => error.msg);
+        throw new UserInputError("Signup validation failed", {
+          validationErrors: errorMessages,
+        });
+      }
+
       const user = new User({ username, password, email });
       return await user.save();
     },

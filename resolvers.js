@@ -19,11 +19,11 @@ const resolver = {
       return await Employee.findById(id);
     },
 
-    employeeByDesignation: async (_, { designation }) => {
+    employeesByDesignation: async (_, { designation }) => {
       return await Employee.find({ designation });
     },
 
-    employeeByDepartment: async (_, { department }) => {
+    employeesByDepartment: async (_, { department }) => {
       return await Employee.find({ department });
     },
   },
@@ -40,8 +40,12 @@ const resolver = {
       return await employee.save();
     },
 
-    updateEmployee: async (_, { employee, updates }) => {
-      return await Employee.findByIdAndUpdate(employee.id, updates);
+    updateEmployee: async (_, { employeeId, updates }) => {
+      return await Employee.findByIdAndUpdate(
+        employeeId,
+        { $set: updates },
+        { new: true, runValidators: true }
+      );
     },
 
     deleteEmployee: async (_, { id }) => {

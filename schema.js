@@ -6,8 +6,8 @@ const schema = gql`
     username: String!
     password: String!
     email: String!
-    createdAt: Date!
-    updatedAt: Date!
+    createdAt: String!
+    updatedAt: String!
   }
 
   type Employee {
@@ -18,11 +18,50 @@ const schema = gql`
     gender: String!
     designation: String!
     salary: Float!
-    joined_date: Date!
+    joined_date: String!
     department: String!
     photo: String!
-    createdAt: Date!
-    updatedAt: Date!
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  input EmployeeCreateRequest {
+    first_name: String!
+    last_name: String!
+    email: String!
+    gender: String!
+    designation: String!
+    salary: Float!
+    joined_date: String!
+    department: String!
+    photo: String!
+  }
+
+  input EmployeeUpdateRequest {
+    first_name: String
+    last_name: String
+    email: String
+    gender: String
+    designation: String
+    salary: Float
+    joined_date: String
+    department: String
+    photo: String
+  }
+
+  type Query {
+    login(username: String!, password: String!): User
+    employees: [Employee]
+    employee(id: ID!): Employee
+    employeesByDesignation(designation: String!): [Employee]
+    employeesByDepartment(department: String!): [Employee]
+  }
+
+  type Mutation {
+    signup(username: String!, password: String!, email: String!): User
+    addEmployee(employee: EmployeeCreateRequest!): Employee
+    updateEmployee(employeeId: ID!, updates: EmployeeUpdateRequest!): Employee
+    deleteEmployee(id: ID!): Employee
   }
 `;
 module.exports = schema;

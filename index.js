@@ -9,6 +9,7 @@ const resolver = require("./resolvers");
 const dotenv = require("dotenv");
 dotenv.config();
 
+const PORT = process.env.PORT || 4000;
 const DB_NAME = "COMP3133";
 const DB_USER_NAME = "benngraham";
 const DB_PASSWORD = "4smI10a94mao2aNm";
@@ -45,9 +46,9 @@ app.use("*", cors());
 
 server.applyMiddleware({ app });
 
-app.listen({ port: process.env.PORT }, () => {
+app.listen({ port: PORT }, () => {
   console.log(
-    `Server started at http://localhost:${process.env.PORT}${server.graphqlPath}`
+    `Server started at http://localhost:${PORT}${server.graphqlPath}`
   );
   connectDB();
 });

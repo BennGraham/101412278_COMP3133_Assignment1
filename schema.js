@@ -1,5 +1,5 @@
 const { gql } = require("apollo-server-express");
-// GraphQL Schema
+
 const schema = gql`
   type User {
     id: ID!

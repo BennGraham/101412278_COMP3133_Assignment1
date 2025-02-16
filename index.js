@@ -9,7 +9,6 @@ const resolver = require("./resolvers");
 const dotenv = require("dotenv");
 dotenv.config();
 
-//mongoDB Atlas Connection String
 const DB_NAME = "COMP3133";
 const DB_USER_NAME = "benngraham";
 const DB_PASSWORD = "4smI10a94mao2aNm";

@@ -34,6 +34,17 @@ const resolver = {
     employeesByDepartment: async (_, { department }) => {
       return await Employee.find({ department });
     },
+
+    filterEmployees: async (_, { designation, department }) => {
+      const queryFilter = {};
+      if (designation) {
+        queryFilter.designation = designation;
+      }
+      if (department) {
+        queryFilter.department = department;
+      }
+      return await Employee.find(queryFilter);
+    },
   },
 
   Mutation: {
@@ -55,9 +66,9 @@ const resolver = {
       return await user.save();
     },
 
-    addEmployee: async (_, newEmployee) => {
-      const employee = new Employee(newEmployee);
-      return await employee.save();
+    addEmployee: async (_, { employee }) => {
+      const newEmployee = new Employee(employee);
+      return await newEmployee.save();
     },
 
     updateEmployee: async (_, { employeeId, updates }) => {

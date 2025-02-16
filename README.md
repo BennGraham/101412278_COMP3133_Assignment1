@@ -6,16 +6,38 @@
 
 ## GraphQL Implementation
 
+#### How to Begin:
+
+- Add DB credentials to .env
+- `npm install`
+- `npm start`
+- visit: localhost:4000/graphql
+- enter query to test endpoints
+
+example:
+
+```
+query Login {
+  login(
+    username: "testuser4"
+    password: "password12"
+  ) {
+    id
+    username
+  }
+}
+```
+
 GraphQL APIs which accept data as JSON Objects
 
-- [ ] Mutation: Signup -> Allow user to create a new account
-- [ ] Query: Login -> Allow user to access the system
-- [ ] Query: Get All Employees -> User can get a list of all employees
-- [ ] Mutation: Add New Employee -> User can create a new employee
-- [ ] Query: Search employee by ID -> User can get employee details by employee ID
-- [ ] Mutation: Update Employee by ID -> User can update employee details
-- [ ] Mutation: Delete Employee by ID -> User can delete employee by ID
-- [ ] Query: Search employee by designation or departmnet -> User can get employee details by designation or department
+- [x] Mutation: Signup -> Allow user to create a new account
+- [x] Query: Login -> Allow user to access the system
+- [x] Query: Get All Employees -> User can get a list of all employees
+- [x] Mutation: Add New Employee -> User can create a new employee
+- [x] Query: Search employee by ID -> User can get employee details by employee ID
+- [x] Mutation: Update Employee by ID -> User can update employee details
+- [x] Mutation: Delete Employee by ID -> User can delete employee by ID
+- [x] Query: Search employee by designation or departmnet -> User can get employee details by designation or department
 
 ## MongoDB Implementation
 
@@ -50,3 +72,7 @@ MongoDB Database name: comp3133\_\_StudentID_assigment1
 | photo       | String | String      |
 | createdAt   | Date   | Default now |
 | updatedAt   | Date   | Default now |
+
+```
+
+```

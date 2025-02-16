@@ -55,6 +55,7 @@ const schema = gql`
     employee(id: ID!): Employee
     employeesByDesignation(designation: String!): [Employee]
     employeesByDepartment(department: String!): [Employee]
+    filterEmployees(designation: String, department: String): [Employee]
   }
 
   type Mutation {

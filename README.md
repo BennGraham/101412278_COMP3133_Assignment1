@@ -19,8 +19,8 @@ example:
 ```
 query Login {
   login(
-    username: "testuser4"
-    password: "password12"
+    username: "testuser7"
+    password: "password123"
   ) {
     id
     username
@@ -72,7 +72,3 @@ MongoDB Database name: comp3133\_\_StudentID_assigment1
 | photo       | String | String      |
 | createdAt   | Date   | Default now |
 | updatedAt   | Date   | Default now |
-
-```
-
-```

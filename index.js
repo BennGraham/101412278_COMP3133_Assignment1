@@ -30,6 +30,8 @@ const connectDB = async () => {
 const server = new ApolloServer({
   typeDefs: schema,
   resolvers: resolver,
+  introspection: true,
+  playground: true,
 });
 
 const app = express();
